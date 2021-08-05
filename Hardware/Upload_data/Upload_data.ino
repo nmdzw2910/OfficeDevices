@@ -13,8 +13,8 @@ String ip = "184.106.153.149";                                //Thingspeak ip Ad
 float sicaklik, nem;
 
 dht11 DHT11;
-int noise = analogRead(A0);
-int airquality = analogRead(A1);
+int airquality = analogRead(A0);
+int noise = analogRead(A1);
 SoftwareSerial esp(rxPin, txPin);                             // make serial communication pin settings.
 
 void setup() {
