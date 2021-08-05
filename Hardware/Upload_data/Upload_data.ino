@@ -1,6 +1,4 @@
 #include <dht11.h>
-
-
 #include <SoftwareSerial.h>
 
 String agAdi = "minhthu";                 // write the name of our network here.
@@ -13,12 +11,9 @@ String ip = "184.106.153.149";                                //Thingspeak ip Ad
 float sicaklik, nem;
 
 dht11 DHT11;
-int airquality = analogRead(A0);
-int noise = analogRead(A1);
 SoftwareSerial esp(rxPin, txPin);                             // make serial communication pin settings.
 
 void setup() {
-
   Serial.begin(9600);  // We are starting our communication with the serial port.
   Serial.println("Started");
   esp.begin(115200);                                          //starting serial communication with ESP8266.
@@ -41,6 +36,7 @@ void setup() {
   Serial.println("connected to the network.");
   delay(1000);
 }
+
 void loop() {
   esp.println("AT+CIPSTART=\"TCP\",\"" + ip + "\",80");       //connect to Thingspeak.
   if (esp.find("Error")) {                                    //check the connection error.
@@ -49,10 +45,10 @@ void loop() {
   DHT11.read(dht11Pin);
   sicaklik = (float)DHT11.temperature;
   nem = (float)DHT11.humidity;
-  
+
   int airquality = analogRead(A0);
-  int noise = analogRead(A1);
-    
+  int noise = analogRead(A2);
+
   String veri = "GET https://api.thingspeak.com/update?api_key=1TN7PO7B8AUI3M7W&field1=0";   //write our own api key in the key part.
   veri += "&field1=";
   veri += String(sicaklik);// The temperature variable we will send
@@ -78,5 +74,5 @@ void loop() {
   }
   Serial.println("Connection Closed.");
   esp.println("AT+CIPCLOSE");                                // close the link
-  delay(1000);                                               // wait 1 minute for sending new data.
+  delay(1000);                                               // wait 1 second for sending new data.
 }
