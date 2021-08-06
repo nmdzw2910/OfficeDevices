@@ -8,7 +8,7 @@ int rxPin = 10;                                               //ESP8266 RX pin
 int txPin = 11;                                               //ESP8266 TX pin
 int dht11Pin = 2;
 String ip = "184.106.153.149";                                //Thingspeak ip Address
-float sicaklik, nem;
+float temp, humi;
 
 dht11 DHT11;
 SoftwareSerial esp(rxPin, txPin);                             // make serial communication pin settings.
@@ -43,18 +43,18 @@ void loop() {
     Serial.println("AT+CIPSTART Error");
   }
   DHT11.read(dht11Pin);
-  sicaklik = (float)DHT11.temperature;
-  nem = (float)DHT11.humidity;
+  temp = (float)DHT11.temperature;
+  humi = (float)DHT11.humidity;
 
-  int airquality = analogRead(A0);
-  int noise = analogRead(A2);
+  float airquality = analogRead(A0);
+  float noise = analogRead(A2);
 
   String veri = "GET https://api.thingspeak.com/update?api_key=1TN7PO7B8AUI3M7W&field1=0";   //write our own api key in the key part.
   veri += "&field1=";
-  veri += String(sicaklik);// The temperature variable we will send
+  veri += String(temp);// The temperature variable we will send
 
   veri += "&field2=";
-  veri += String(nem);// The moisture variable we will send
+  veri += String(humi);// The moisture variable we will send
 
   veri += "&field3=";
   veri += String(airquality);// The Noise Level variable we will send
