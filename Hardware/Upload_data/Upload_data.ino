@@ -11,12 +11,12 @@ String ip = "184.106.153.149";                                //Thingspeak ip Ad
 float temp, humi;
 
 dht11 DHT11;
-SoftwareSerial esp(rxPin, txPin);                             // make serial communication pin settings.
+SoftwareSerial esp(rxPin, txPin);                              // make serial communication pin settings.
 
 void setup() {
   Serial.begin(9600);                                          // We are starting our communication with the serial port.
   Serial.println("Started");
-  esp.begin(115200);                                          //starting serial communication with ESP8266.
+  esp.begin(115200);                                           //starting serial communication with ESP8266.
   esp.println("AT");                                           //the module control with the AT command.
   Serial.println("AT  sent ");
   while (!esp.find("OK")) {                                    //wait until the module is ready.
@@ -46,8 +46,8 @@ void loop() {
   temp = (float)DHT11.temperature;
   humi = (float)DHT11.humidity;
 
-  float airquality = analogRead(A0);
-  float noise = analogRead(A2);
+  float airquality = analogRead(0);
+  float noise = analogRead(2);
 
   String veri = "GET https://api.thingspeak.com/update?api_key=1TN7PO7B8AUI3M7W&field1=0";   //write our own api key in the key part.
   veri += "&field1=";
