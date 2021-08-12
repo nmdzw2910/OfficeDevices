@@ -10,11 +10,12 @@ const StatusCard = props => {
             <div className="status-card__icon" >
                 <i className={props.icon}></i>
             </div>
+            
             <div className="status-card__info">
                 <h4>{props.area}</h4>
-                <span>{props.aqi}</span>
-                <br></br>
-                <span>{props.noise}</span>
+                <h5>{props.aqi} ppm <span className="dot"></span></h5>
+                <br />
+                <h5>{props.noise} dB <span className="dot"></span></h5>
             </div>
         </div>
     )

@@ -13,11 +13,11 @@
 }
 
 .status-card__icon {
-    width: 30%;
+    width: 20%;
     height: 100%;
     font-size: 3rem;
-    display: flex;
-    align-items: center;
+    display: center;
+    align-items: left;
     justify-content: center;
     z-index: 1;
 }
@@ -26,11 +26,10 @@
     flex-grow: 1;
     text-align: center;
     z-index: 1;
-    text-transform: capitalize;
 }
 
-.status-card__info > h4 {
-    font-size: 2.5rem;
+.status-card__info>h4 {
+    font-size: 2rem;
     margin-bottom: 10px;
 }
 
@@ -39,11 +38,7 @@
     width: 100%;
     padding-top: 100%;
     border-radius: 50%;
-    background-image: linear-gradient(
-        to top right,
-        var(--main-color),
-        var(--second-color)
-    );
+    background-image: linear-gradient( to top right, var(--main-color), var(--second-color));
     position: absolute;
     left: -50%;
     top: 0;
@@ -57,4 +52,12 @@
 
 .status-card:hover {
     color: var(--txt-white);
+}
+
+.dot {
+    height: 9px;
+    width: 9px;
+    background-color: rgb(31, 224, 31);
+    border-radius: 50%;
+    display: inline-block;
 }

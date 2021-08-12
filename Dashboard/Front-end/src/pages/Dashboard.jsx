@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -6,18 +6,24 @@ import Chart from 'react-apexcharts'
 
 import { useSelector } from 'react-redux'
 
+import './page.css'
+
 import StatusCard from '../components/status-card/StatusCard'
 
 import Table from '../components/table/Table'
 
 import Badge from '../components/badge/Badge'
 
+import aqi from '../assets/images/aqi.png'
+
+import noise from '../assets/images/noise.png'
+
 import statusCards from '../assets/JsonData/status-card-data.json'
 
 const chartOptions = {
     series: [{
         name: 'Average AQI',
-        data: [40,70,20,90,36,80,30,91,60]
+        data: [40, 70, 20, 90, 36, 80, 30, 91, 60]
     }, {
         name: 'Average Noise Level',
         data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10]
@@ -65,7 +71,7 @@ const renderOrderBody = (item, index) => (
         <td>{item.price}</td>
         <td>{item.date}</td>
         <td>
-            <Badge type={orderStatus[item.status]} content={item.status}/>
+            <Badge type={orderStatus[item.status]} content={item.status} />
         </td>
     </tr>
 )
@@ -73,7 +79,6 @@ const renderOrderBody = (item, index) => (
 const Dashboard = () => {
 
     const themeReducer = useSelector(state => state.ThemeReducer.mode)
-
 
     return (
         <div>
@@ -85,15 +90,15 @@ const Dashboard = () => {
                             statusCards.map((item, index) => (
                                 <div className="col-6" key={index}>
                                     <Link to={item.route} key={index}>
-                                    <StatusCard
-                                        icon={item.icon}
-                                        area={item.area}
-                                        aqi={item.aqi}
-                                        noise={item.noise}
-                                    />
+                                        <StatusCard
+                                            icon={item.icon}
+                                            area={item.area}
+                                            aqi={item.aqi}
+                                            noise={item.noise}
+                                        />
                                     </Link>
                                 </div>
-                                
+
                             ))
                         }
                     </div>
@@ -104,10 +109,10 @@ const Dashboard = () => {
                         <Chart
                             options={themeReducer === 'theme-mode-dark' ? {
                                 ...chartOptions.options,
-                                theme: { mode: 'dark'}
+                                theme: { mode: 'dark' }
                             } : {
                                 ...chartOptions.options,
-                                theme: { mode: 'light'}
+                                theme: { mode: 'light' }
                             }}
                             series={chartOptions.series}
                             type='line'
@@ -115,6 +120,12 @@ const Dashboard = () => {
                         />
                     </div>
                 </div>
+            </div>
+            <div>
+                <h3>US EPA Air Quality Index</h3>
+                <img className='reponsive-img' src={aqi} alt="aqi" />
+                <h3>Noise Level - Decibel Scale</h3>
+                <img className='reponsive-img' src={noise} alt="noise" />
             </div>
         </div>
     )
