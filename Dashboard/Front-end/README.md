@@ -1,10 +1,6 @@
-# React Admin Dashboard with Multiple Themes
-
-    Build React Admin Dashboard with Multiple Themes | React Admin Panel CSS | ReactJS
-
 # Description
 
-    We will Build React Admin Dashboard with Multiple Themes | React Admin Panel CSS | ReactJS
+    We will build the Front-end of the admin dashboard for the Netcompany Office Devices Capstone Project
 
 # Resource
 
