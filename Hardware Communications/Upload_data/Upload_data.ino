@@ -9,6 +9,7 @@ int txPin = 11;                                                //ESP8266 TX pin
 int dht11Pin = 2;
 String ip = "184.106.153.149";                                //Thingspeak ip Address
 float temp, humi;
+float noise, airquality;
 
 dht11 DHT11;
 SoftwareSerial esp(rxPin, txPin);                              // make serial communication pin settings.
@@ -43,11 +44,10 @@ void loop() {
     Serial.println("AT+CIPSTART Error");
   }
   DHT11.read(dht11Pin);
-  temp = (float)DHT11.temperature;
-  humi = (float)DHT11.humidity;
-
-  float airquality = analogRead(0);
-  float noise = analogRead(2);
+  temp = (int)DHT11.temperature;
+  humi = (int)DHT11.humidity;
+  airquality = (int)analogRead(0);
+  noise = (int)analogRead(2);
 
   String veri = "GET https://api.thingspeak.com/update?api_key=1TN7PO7B8AUI3M7W&field1=0";   //write our own api key in the key part.
   veri += "&field1=";

@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals'
-
-import { createStore } from 'redux'
-
 import { Provider } from 'react-redux'
 
-import rootReducer from './redux/reducers'
-
+import configureStore from './redux/reducers'
+import 'semantic-ui-css/semantic.min.css'
 import './assets/boxicons-2.0.7/css/boxicons.min.css'
 import './assets/css/grid.css'
 import './assets/css/theme.css'
@@ -15,21 +12,16 @@ import './assets/css/index.css'
 
 import Layout from './components/layout/Layout'
 
-const store = createStore(
-    rootReducer
-)
+const store = configureStore();
 
 document.title = 'Netcompany Office Devices'
 
-ReactDOM.render( <
-    Provider store = { store } >
-    <
-    React.StrictMode >
-    <
-    Layout / >
-    <
-    /React.StrictMode> <
-    /Provider>,
+ReactDOM.render( 
+    <Provider store = { store } >
+        <React.StrictMode >
+            <Layout />
+        </React.StrictMode>
+    </Provider>,
     document.getElementById('root')
 );
 

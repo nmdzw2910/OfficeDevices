@@ -86,6 +86,8 @@ const Form = ({ onSubmit }) => {
 
                     localStorage.setItem("museremail", result.user.email)
                     localStorage.setItem("museruids", result.user.uid)
+                    localStorage.setItem("muserpassword", password)
+
                     history.push("/dashboard")
 
 
@@ -119,7 +121,7 @@ const Form = ({ onSubmit }) => {
                     padding: "20px",
                     width: "350px",
                 }}>
-                    <h2>Login </h2>
+                    <h2>Login Now</h2>
                     <br /><br />
                     <Field ref={usernameRef} type="email" placeholder="Enter Email Address" required />
                     <br />
@@ -134,7 +136,7 @@ const Form = ({ onSubmit }) => {
                         <br />
 
                         <button style={submitStyle} type="submit">Login</button>
-                        <Link to={"/forgotpassword"} style={{ color: 'red', fontSize: '16px'  }}>Forgot Password</Link>
+                        <Link to={"/forgotpassword"} style={{ color: 'blue', fontSize: '12px' }}>Forgot Password</Link>
 
                     </div>
 
@@ -153,13 +155,13 @@ const Login = () => {
         console.clear();
         console.log(json);
     };
-    return ( 
+    return (
         <div className="layout__content-main" style={{ padding: 0 }}>
-                    <div style={appStyle}>
-            <Form onSubmit={handleSubmit} />
+            <div style={appStyle}>
+                <Form onSubmit={handleSubmit} />
+            </div>
         </div>
-                </div>
-        
+
     );
 };
 export default Login;
